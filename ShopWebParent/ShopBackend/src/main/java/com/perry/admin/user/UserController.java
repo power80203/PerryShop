@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.perry.common.entity.Role;
 import com.perry.common.entity.User;
@@ -41,16 +43,18 @@ public class UserController {
 		model.addAttribute("user",user);
 		model.addAttribute("listRoles",listRoles);
 		
+		System.out.println("into new page");
+		
 		return "user_form";
 		
 	}
 	
-	
-	@PostMapping("/users/save")
+//	@PostMapping("/users/save")
+	@RequestMapping(value="/users/save", method= {RequestMethod.POST,RequestMethod.GET })
 	public String saveUser(User user) {
 		
 		
-		System.out.println("##############");
+		System.out.println("####幹你娘######");
 		System.out.println(user.getEmail());
 		ur.save(user);
 		
