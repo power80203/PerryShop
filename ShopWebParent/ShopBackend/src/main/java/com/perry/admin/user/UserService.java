@@ -3,6 +3,7 @@ package com.perry.admin.user;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.perry.common.entity.Role;
@@ -18,6 +19,9 @@ public class UserService {
 	@Autowired
 	private RoleRepository roleRepository;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 
 	public List<User> listAll() {
 		
@@ -31,8 +35,21 @@ public class UserService {
 		
 	}
 
+	
+	private void encodePassowrd(User u) {
+		
+		String s_enString  = passwordEncoder.encode(u.getPassword());
+		u.setPassword(s_enString);
+		
+	}
+	
+	
+	
 	public void save(User user) {
 		// TODO Auto-generated method stub
+		//加密密碼
+		encodePassowrd(user);
+		
 		uRepository.save(user);
 		
 	}
