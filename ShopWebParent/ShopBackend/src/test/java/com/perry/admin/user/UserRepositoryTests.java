@@ -59,6 +59,16 @@ public class UserRepositoryTests {
 		
 	}
 	
+	
+	@Test
+	void testGetUserByEmail() {
+		String emailString = "abc@java.net";
+		User u = ur.getUserByEmail(emailString);
+		
+		assertThat(u).isNotNull();
+		
+		
+	}
 }
 
 
