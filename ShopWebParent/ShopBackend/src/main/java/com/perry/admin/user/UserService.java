@@ -54,5 +54,15 @@ public class UserService {
 		
 	}
 	
+	public boolean isUserUnique(String email) {
+		
+		String userEmaiString  = email;
+		
+		return uRepository.getUserByEmail(userEmaiString) == null ;
+		
+		
+		
+	}
+	
 
 }
